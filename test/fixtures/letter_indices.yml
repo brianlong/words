@@ -1,0 +1,52 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined. If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+# test
+one:
+  word_id: 1
+  position: 1
+  letter: t
+two:
+  word_id: 1
+  position: 2
+  letter: e
+three:
+  word_id: 1
+  position: 3
+  letter: s
+four:
+  word_id: 1
+  position: 4
+  letter: t
+# example
+five:
+  word_id: 2
+  position: 1
+  letter: e
+six:
+  word_id: 2
+  position: 2
+  letter: x
+seven:
+  word_id: 2
+  position: 3
+  letter: a
+eight:
+  word_id: 2
+  position: 4
+  letter: m
+nine:
+  word_id: 2
+  position: 5
+  letter: p
+ten:
+  word_id: 2
+  position: 6
+  letter: l
+eleven:
+  word_id: 2
+  position: 7
+  letter: e

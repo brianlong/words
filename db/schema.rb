@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226202310) do
+ActiveRecord::Schema.define(version: 20180226202718) do
+
+  create_table "letter_indices", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.bigint "word_id"
+    t.integer "position"
+    t.string "letter", limit: 1
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["position", "letter"], name: "index_letter_indices_on_position_and_letter"
+    t.index ["word_id"], name: "index_letter_indices_on_word_id"
+  end
 
   create_table "words", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "word"
