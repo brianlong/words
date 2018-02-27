@@ -11,29 +11,42 @@ class LetterIndex < ApplicationRecord
   # * Examples:
   #     LetterIndex.find_words(1 => 't', 2 => 'e') => ['test', 'tent']
   def self.find_words(letters = {})
+    # TODO: Add word length as an option to limit results based on the length
+    # of the word.
+
     # Guards
     return [] unless letters.is_a?(Hash)
     return [] if letters.empty?
 
     # Initialize a variable to hold the words
-    word_array = []
+    id_array = []
 
-    # Process the first letter
+    # Q: Can I turn the following two steps into a recursive function?
+    # 1. Process the first letter
     fl = letters.first
-    where(["position = ? AND letter = ?", fl[0], fl[1]]).each do |li|
-      word_array << li.word.word
+    # Find the Word IDs where the provided letter is in the provided position.
+    select('distinct word_id').where(["position = ? AND letter = ?", fl[0], fl[1]]).each do |id|
+      id_array << id.word_id
     end
 
-    # Process the rest of the letters
+    # 2. Process the rest of the letters
     letters.reject{|k,v| k == fl[0]}.each do |li|
-      temp_words = []
-      where(["position = ? AND letter = ?", fl[0], fl[1]]).each do |li|
-        temp_words << li.word.word
+      # Create a temp variable.
+      temp_ids = []
+
+      # Find the Word IDs where the provided letter is in the provided position.
+      select('distinct word_id').where(["position = ? AND letter = ?", li[0], li[1]]).each do |id|
+        temp_ids << id.word_id
       end
-      # Perform an intersection of two arrays
-      word_array = word_array & temp_words
+
+      # Perform an intersection of arrays to reduce the candidate set.
+      id_array = id_array & temp_ids
     end
+
+    # Guard against no matches
+    return [] if id_array.empty?
+
     # return the result.
-    word_array
+    Word.where("id IN (#{id_array.uniq.join(', ')})").map{ |w| w.word }
   end
 end

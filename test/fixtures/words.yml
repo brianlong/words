@@ -10,3 +10,6 @@ one:
 two:
   id: 2
   word: example
+tent:
+  id: 3
+  word: tent

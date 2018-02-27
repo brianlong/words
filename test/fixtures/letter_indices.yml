@@ -50,3 +50,19 @@ eleven:
   word_id: 2
   position: 7
   letter: e
+twelve:
+  word_id: 3
+  position: 1
+  letter: t
+thirteen:
+  word_id: 3
+  position: 2
+  letter: e
+fourteen:
+  word_id: 3
+  position: 3
+  letter: n
+fifteen:
+  word_id: 3
+  position: 4
+  letter: t
